@@ -1,21 +1,18 @@
-import _ from 'lodash';
 import './styles.css';
-import printMe from './print';
+import UI from './ui';
 
-function component() {
-  const element = document.createElement('div');
-  const btn = document.createElement('button');
+const todos = [
+  {
+    description: 'Mow lawn',
+    completed: false,
+    index: 0
+  },
+  {
+    description: 'Clean bathroom',
+    completed: true,
+    index: 1
+  }
+];
 
-  // Lodash, now imported by this script
-  element.innerHTML = _.join(['Hello', 'webpack'], ' ');
-  element.classList.add('hello');
-
-  btn.innerHTML = 'Click me and check the console!';
-  btn.onclick = printMe;
-
-  element.appendChild(btn);
-
-  return element;
-}
-
-document.body.appendChild(component());
+// When content loads
+document.addEventListener('DOMContentLoaded', UI.addApp(todos));
