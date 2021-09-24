@@ -228,6 +228,7 @@ export default class UI {
 
   static removeTask(index) {
     removeTask(index);
+    this.updateIndexes();
   }
 
   static updateTask(index, newDesc) {
@@ -236,5 +237,16 @@ export default class UI {
 
   static clearCompleted() {
     clearCompleted();
+    this.updateIndexes();
+  }
+
+  static updateIndexes() {
+    const todos = Store.getTasks();
+    for (let i = 1; i <= todos.length; i += 1) {
+      const element = todos[i - 1];
+      element.index = i;
+    }
+    Store.setTasks(todos);
+    Store.setIndex(todos.length + 1);
   }
 }
