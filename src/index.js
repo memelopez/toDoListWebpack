@@ -13,7 +13,7 @@ document.querySelector('#addTaskForm').addEventListener('submit', (e) => {
   // Get form values
   const taskDescription = document.querySelector('#taskDesc').value.trim();
   if (!validateDescription(taskDescription)) {
-    console.log('Error - empty description');
+    // empty input
   } else {
     // Add task
     UI.addTaskStore(taskDescription);
@@ -27,7 +27,7 @@ document.querySelector('#clickEnterIcon').addEventListener('click', () => {
   // Get form values
   const taskDescription = document.querySelector('#taskDesc').value.trim();
   if (!validateDescription(taskDescription)) {
-    console.log('Error - empty description');
+    // empty input
   } else {
     // Add task
     UI.addTaskStore(taskDescription);
@@ -90,7 +90,6 @@ document.querySelector('#task-list').addEventListener('click', (e) => {
 });
 
 document.querySelector('#pBtm').addEventListener('click', () => {
-  console.log('hi');
   UI.clearCompleted();
 
   // Reload page
