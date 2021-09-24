@@ -5,12 +5,12 @@ const todos = [
   {
     description: 'Mow lawn',
     completed: false,
-    index: 0,
+    index: 3,
   },
   {
     description: 'Clean bathroom',
     completed: true,
-    index: 1,
+    index: 5,
   },
 ];
 

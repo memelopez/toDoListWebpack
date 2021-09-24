@@ -85,6 +85,8 @@ export default class UI {
   }
 
   static addTasksUI(tasks) {
+    // Sorts array by index
+    tasks.sort((a, b) => a.index - b.index);
     // Iterates over array tasks to populate HTML list
     if (tasks.length === 0) {
       this.addEmptyToDoMessage();
@@ -143,7 +145,7 @@ export default class UI {
   static addbottombtn() {
     const appDiv = document.querySelector('#appDiv');
 
-    const btmDiv = document.createElement('DIV');
+    const btmDiv = document.createElement('div');
     btmDiv.className = 'd-flex justify-content-center align-items-center border btmDiv';
 
     const pBtm = document.createElement('p');
