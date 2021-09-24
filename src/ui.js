@@ -1,11 +1,15 @@
 // UI Class: Handles UI Tasks
 
+import Store from './store';
+import Task from './task';
+import taskCompleted from './checkboxes';
+
 export default class UI {
-  static addApp(todos) {
+  static addApp() {
     this.addTitle();
     this.addForm();
     this.addEmptyUL();
-    // const todos = Store.getTasks();
+    const todos = Store.getTasks();
     this.addTasksUI(todos);
     this.addbottombtn();
   }
@@ -155,5 +159,20 @@ export default class UI {
 
     btmDiv.appendChild(pBtm);
     appDiv.appendChild(btmDiv);
+  }
+
+  static addTaskStore(description) {
+    // gets index from storage
+    const index = Store.getIndexTotal();
+    // instantiates a new task
+    const task = new Task(description, false, index);
+
+    // Add task to local storage
+    Store.addTask(task);
+    Store.setsIndexTotalPlusOne();
+  }
+
+  static taskCompleted(index, value) {
+    taskCompleted(index, value);
   }
 }
