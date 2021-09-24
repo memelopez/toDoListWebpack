@@ -26,7 +26,7 @@ export default class Store {
   static getIndexTotal() {
     let total;
     if (localStorage.getItem('index') === null) {
-      total = 0;
+      total = 1;
     } else {
       total = JSON.parse(localStorage.getItem('index'));
     }
@@ -39,5 +39,9 @@ export default class Store {
     let total = this.getIndexTotal();
     total += 1;
     localStorage.setItem('index', JSON.stringify(total));
+  }
+
+  static setIndex(number) {
+    localStorage.setItem('index', JSON.stringify(number));
   }
 }
