@@ -13,14 +13,14 @@ export default class UI {
   static addTitle() {
     const appDiv = document.querySelector('#appDiv');
 
-    const div4title = document.createElement('DIV');
+    const div4title = document.createElement('div');
     div4title.className = 'd-flex justify-content-start align-items-center border-bottom border-2 px-2 appItem';
 
     const title = document.createElement('p');
     title.className = 'fs-5 m-0';
     title.innerText = "Today's To Do";
 
-    const icon = document.createElement('ICON');
+    const icon = document.createElement('i');
     icon.className = 'fas fa-sync-alt ms-auto p-2';
 
     div4title.appendChild(title);
@@ -32,8 +32,8 @@ export default class UI {
   static addForm() {
     const appDiv = document.querySelector('#appDiv');
 
-    const div4form = document.createElement('DIV');
-    const form = document.createElement('FORM');
+    const div4form = document.createElement('div');
+    const form = document.createElement('form');
     form.className = 'd-flex justify-content-start align-items-center border-bottom border-2 px-2 appItem';
     form.action = 'submit';
     form.id = 'addTaskForm';
@@ -44,10 +44,10 @@ export default class UI {
     input.placeholder = 'Add to your list...';
     input.className = 'form-control border-0 fst-italic p-0';
 
-    const icon = document.createElement('ICON');
+    const icon = document.createElement('i');
     icon.className = 'fas fa-sign-in-alt ms-auto p-2';
 
-    const aSubmit = document.createElement('A');
+    const aSubmit = document.createElement('a');
     aSubmit.setAttribute('id', 'clickEnterIcon');
 
     form.appendChild(input);
@@ -61,8 +61,8 @@ export default class UI {
   static addEmptyUL() {
     const appDiv = document.querySelector('#appDiv');
 
-    const div4list = document.createElement('DIV');
-    const list = document.createElement('UL');
+    const div4list = document.createElement('div');
+    const list = document.createElement('ul');
     list.id = 'task-list';
     list.className = 'p-0 m-0';
     div4list.appendChild(list);
@@ -73,10 +73,10 @@ export default class UI {
   static addEmptyToDoMessage() {
     const list = document.querySelector('#task-list');
 
-    const item = document.createElement('LI'); // creates list item
+    const item = document.createElement('li'); // creates list item
     item.className = 'd-flex justify-content-center align-items-center border-bottom border-2 px-2 appItem';
 
-    const p = document.createElement('P');
+    const p = document.createElement('p');
     p.className = 'm-0 p-0 noToDos';
     p.innerHTML = "No to-do's right now";
 
@@ -96,20 +96,20 @@ export default class UI {
   static addTaskToList(task) {
     const list = document.querySelector('#task-list');
 
-    const item = document.createElement('LI'); // creates list item
+    const item = document.createElement('li'); // creates list item
     item.className = 'd-flex justify-content-around align-items-center border-bottom border-2 px-2 appItem';
 
     // creates div for normal view
-    const divNormal = document.createElement('DIV');
+    const divNormal = document.createElement('div');
     divNormal.className = 'd-flex align-items-center normalView';
 
-    const checkbox = document.createElement('INPUT'); // creates checkbox
+    const checkbox = document.createElement('input'); // creates checkbox
     checkbox.setAttribute('type', 'checkbox');
     checkbox.checked = task.completed;
     checkbox.className = 'form-check-label p-2';
     divNormal.appendChild(checkbox); // appends checkbox to item
 
-    const text = document.createElement('P'); // creates p
+    const text = document.createElement('p'); // creates p
     text.textContent = task.description;
     text.className = 'm-0 p-2';
     if (task.completed === true) {
@@ -118,18 +118,18 @@ export default class UI {
     divNormal.appendChild(text); // appends p to item
 
     // Creates div for icons
-    const div4Icons = document.createElement('DIV');
+    const div4Icons = document.createElement('div');
     div4Icons.className = 'ms-auto';
 
-    const iconEdit = document.createElement('I'); // creates edit icon
+    const iconEdit = document.createElement('i'); // creates edit icon
     iconEdit.className = 'fas fa-ellipsis-v p-2 edtIcn';
     div4Icons.appendChild(iconEdit); // appends edit icon to item
 
-    const iconAccept = document.createElement('I'); // creates accept icon
+    const iconAccept = document.createElement('i'); // creates accept icon
     iconAccept.className = 'fas fa-check-circle p-2 d-none acceptIcn';
     div4Icons.appendChild(iconAccept); // appends accpet icon to item
 
-    const iconRemove = document.createElement('I'); // creates remove icon
+    const iconRemove = document.createElement('i'); // creates remove icon
     iconRemove.className = 'fas fa-trash p-2 d-none removeIcn';
     div4Icons.appendChild(iconRemove); // appends remove icon to item
 
@@ -146,7 +146,7 @@ export default class UI {
     const btmDiv = document.createElement('DIV');
     btmDiv.className = 'd-flex justify-content-center align-items-center border btmDiv';
 
-    const pBtm = document.createElement('P');
+    const pBtm = document.createElement('p');
     pBtm.textContent = 'Clear all completed';
     pBtm.className = 'm-0 btmText';
     pBtm.id = 'pBtm';
