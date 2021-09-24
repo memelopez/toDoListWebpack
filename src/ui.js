@@ -140,7 +140,6 @@ export default class UI {
     div4Icons.appendChild(iconRemove); // appends remove icon to item
 
     item.appendChild(divNormal);
-    // item.appendChild(divEdit);
     item.appendChild(div4Icons);
 
     list.appendChild(item); // appends item to list
