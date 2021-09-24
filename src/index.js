@@ -1,3 +1,4 @@
+/* eslint-disable no-restricted-globals */
 import './styles.css';
 import UI from './ui';
 import validateDescription from './validateDescription';
@@ -17,7 +18,6 @@ document.querySelector('#addTaskForm').addEventListener('submit', (e) => {
     // Add task
     UI.addTaskStore(taskDescription);
     // reloads page
-    // eslint-disable-next-line no-restricted-globals
     location.reload();
   }
 });
@@ -33,7 +33,6 @@ document.querySelector('#clickEnterIcon').addEventListener('click', () => {
     UI.addTaskStore(taskDescription);
 
     // reloads page
-    // eslint-disable-next-line no-restricted-globals
     location.reload();
   }
 });
@@ -53,7 +52,6 @@ document.querySelector('#task-list').addEventListener('change', (e) => {
     UI.taskCompleted(index, checkboxState);
 
     // Reload page
-    // eslint-disable-next-line no-restricted-globals
     location.reload();
   }
 });
