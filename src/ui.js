@@ -3,6 +3,9 @@
 import Store from './store';
 import Task from './task';
 import taskCompleted from './checkboxes';
+import removeTask from './removeTask';
+import updateTask from './updateTask';
+import clearCompleted from './clearCompleted';
 
 export default class UI {
   static addApp() {
@@ -123,6 +126,17 @@ export default class UI {
     }
     divNormal.appendChild(text); // appends p to item
 
+    // Create div for edit view
+    const divEdit = document.createElement('DIV');
+    divEdit.className = 'd-none flex-fill align-items-center editView';
+
+    const inputEdit = document.createElement('INPUT');
+    inputEdit.setAttribute('type', 'text');
+    inputEdit.className = 'form-control border-0 p-0';
+    inputEdit.value = task.description;
+
+    divEdit.appendChild(inputEdit);
+
     // Creates div for icons
     const div4Icons = document.createElement('div');
     div4Icons.className = 'ms-auto';
@@ -140,6 +154,7 @@ export default class UI {
     div4Icons.appendChild(iconRemove); // appends remove icon to item
 
     item.appendChild(divNormal);
+    item.appendChild(divEdit);
     item.appendChild(div4Icons);
 
     list.appendChild(item); // appends item to list
@@ -173,5 +188,65 @@ export default class UI {
 
   static taskCompleted(index, value) {
     taskCompleted(index, value);
+  }
+
+  static changeLiToEditMode(li) {
+    let classesLi = li.className;
+    classesLi = classesLi.replace('appItem', 'appItemEdit');
+    li.className = classesLi;
+    const childrenLi = li.children;
+
+    // change clases of divs
+    const normalView = childrenLi[0];
+    let classesNV = normalView.className;
+    classesNV = classesNV.replace('d-flex', 'd-none');
+    normalView.className = classesNV;
+
+    const editView = childrenLi[1];
+    let classesE = editView.className;
+    classesE = classesE.replace('d-none', 'd-flex');
+    editView.className = classesE;
+
+    // show appropriate icons in edit view
+    const divIcons = childrenLi[2];
+    const icons = divIcons.children;
+    icons[0].classList.add('d-none');
+    this.changeClassToElement(icons[1], 'd-none', '');
+    this.changeClassToElement(icons[2], 'd-none', '');
+
+    // sets focus con the input to edit
+    const inputEdit = editView.querySelector('input');
+    inputEdit.id = 'inputEdit';
+    inputEdit.focus();
+  }
+
+  static changeClassToElement(item, oldClass, newClass) {
+    let classesItem = item.className;
+    classesItem = classesItem.replace(oldClass, newClass);
+    item.className = classesItem;
+  }
+
+  static removeTask(index) {
+    removeTask(index);
+    this.updateIndexes();
+  }
+
+  static updateTask(index, newDesc) {
+    updateTask(index, newDesc);
+  }
+
+  static clearCompleted() {
+    clearCompleted();
+    this.updateIndexes();
+  }
+
+  static updateIndexes() {
+    const todos = Store.getTasks();
+    for (let i = 1; i <= todos.length; i += 1) {
+      const element = todos[i - 1];
+      element.index = i;
+    }
+    Store.setTasks(todos);
+    Store.setIndex(todos.length + 1);
   }
 }
