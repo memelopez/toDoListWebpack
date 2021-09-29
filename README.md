@@ -4,8 +4,8 @@
 
 > An application of a to-do list.
 
-<img src="https://user-images.githubusercontent.com/6587226/135353489-e216f65d-17a3-4b7a-a921-ef2b58a23e3c.png">
-<img src="https://user-images.githubusercontent.com/6587226/135353552-36d00a18-e934-4556-9e00-790f8283b792.png">
+<img src="https://user-images.githubusercontent.com/6587226/135353489-e216f65d-17a3-4b7a-a921-ef2b58a23e3c.png" width="500">
+<img src="https://user-images.githubusercontent.com/6587226/135353552-36d00a18-e934-4556-9e00-790f8283b792.png" width="500">
 
 To-do list app. For storing your shores and responsabilities.  
 
