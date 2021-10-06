@@ -14,7 +14,7 @@ export default class UI {
     // this.addEmptyUL();
     const todos = Store.getTasks();
     this.addTasksUI(todos);
-    this.addbottombtn();
+    // this.addbottombtn();
   }
 
   static addTitle() {
