@@ -10,7 +10,7 @@ import clearCompleted from './clearCompleted';
 export default class UI {
   static addApp() {
     // this.addTitle();
-    this.addForm();
+    // this.addForm();
     this.addEmptyUL();
     const todos = Store.getTasks();
     this.addTasksUI(todos);
