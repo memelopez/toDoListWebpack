@@ -11,7 +11,7 @@ export default class UI {
   static addApp() {
     // this.addTitle();
     // this.addForm();
-    this.addEmptyUL();
+    // this.addEmptyUL();
     const todos = Store.getTasks();
     this.addTasksUI(todos);
     this.addbottombtn();
