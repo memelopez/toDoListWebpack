@@ -16,10 +16,9 @@ document.querySelector('#addTaskForm').addEventListener('submit', (e) => {
     // empty input
   } else {
     // Add task
-    UI.addTaskStore(taskDescription);
-    // reloads page
-    location.reload();
+    UI.addTask(taskDescription);
   }
+  document.querySelector('#taskDesc').value = '';
 });
 
 // Event: when icon is clicked to add task
@@ -30,11 +29,9 @@ document.querySelector('#clickEnterIcon').addEventListener('click', () => {
     // empty input
   } else {
     // Add task
-    UI.addTaskStore(taskDescription);
-
-    // reloads page
-    location.reload();
+    UI.addTask(taskDescription);
   }
+  document.querySelector('#taskDesc').value = '';
 });
 
 // Event: when checkboxes are clicked
@@ -50,18 +47,16 @@ document.querySelector('#task-list').addEventListener('change', (e) => {
     const index = nodes.indexOf(itemChecked);
 
     UI.taskCompleted(index, checkboxState);
-
-    // Reload page
-    location.reload();
+    UI.addApp();
   }
 });
 
 // Event: editing and removing
 document.querySelector('#task-list').addEventListener('click', (e) => {
-  const classesIcn = e.target.className;
+  const classesIcn = e.target.parentElement.className;
   const classesArr = classesIcn.split(' ');
 
-  const li = e.target.parentElement.parentElement;
+  const li = e.target.parentElement.parentElement.parentElement;
   const ulList = document.querySelector('#task-list');
   const nodes = Array.from(ulList.children);
   const index = nodes.indexOf(li);
@@ -74,24 +69,18 @@ document.querySelector('#task-list').addEventListener('click', (e) => {
   // when the check icon gets clicked to UPDATE
   if (classesArr.indexOf('removeIcn') !== -1) {
     UI.removeTask(index);
-
-    // Reload page
-    location.reload();
+    UI.addApp();
   }
 
   // when the the trash icon gets clicked to REMOVE
   if (classesArr.indexOf('acceptIcn') !== -1) {
     const newDesc = document.querySelector('#inputEdit').value;
     UI.updateTask(index, newDesc);
-
-    // Reload page
-    location.reload();
+    UI.addApp();
   }
 });
 
 document.querySelector('#pBtm').addEventListener('click', () => {
   UI.clearCompleted();
-
-  // Reload page
-  location.reload();
+  UI.addApp();
 });
