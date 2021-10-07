@@ -31,6 +31,7 @@ export default class UI {
     // Sorts array by index
     tasks.sort((a, b) => a.index - b.index);
     // Iterates over array tasks to populate HTML list
+    document.querySelector('#task-list').innerHTML = '';
     if (tasks.length === 0) {
       this.addEmptyToDoMessage();
     } else {
@@ -63,10 +64,10 @@ export default class UI {
     divNormal.appendChild(text); // appends p to item
 
     // Create div for edit view
-    const divEdit = document.createElement('DIV');
+    const divEdit = document.createElement('div');
     divEdit.className = 'd-none flex-fill align-items-center editView';
 
-    const inputEdit = document.createElement('INPUT');
+    const inputEdit = document.createElement('input');
     inputEdit.setAttribute('type', 'text');
     inputEdit.className = 'form-control border-0 p-0';
     inputEdit.value = task.description;
@@ -77,17 +78,26 @@ export default class UI {
     const div4Icons = document.createElement('div');
     div4Icons.className = 'ms-auto';
 
+    const aEdit = document.createElement('a');
+    aEdit.className = 'edtIcn';
     const iconEdit = document.createElement('i'); // creates edit icon
-    iconEdit.className = 'fas fa-ellipsis-v p-2 edtIcn';
-    div4Icons.appendChild(iconEdit); // appends edit icon to item
+    iconEdit.className = 'fas fa-ellipsis-v p-2';
+    aEdit.appendChild(iconEdit); // appends edit icon to anchor
+    div4Icons.appendChild(aEdit); // appends achor to item
 
+    const aAccept = document.createElement('a');
+    aAccept.className = 'd-none acceptIcn';
     const iconAccept = document.createElement('i'); // creates accept icon
-    iconAccept.className = 'fas fa-check-circle p-2 d-none acceptIcn';
-    div4Icons.appendChild(iconAccept); // appends accpet icon to item
+    iconAccept.className = 'fas fa-check-circle p-2';
+    aAccept.appendChild(iconAccept); // appends accept icon to anchor
+    div4Icons.appendChild(aAccept); // appends accpet anchor to item
 
+    const aRemove = document.createElement('a');
+    aRemove.className = 'd-none removeIcn';
     const iconRemove = document.createElement('i'); // creates remove icon
-    iconRemove.className = 'fas fa-trash p-2 d-none removeIcn';
-    div4Icons.appendChild(iconRemove); // appends remove icon to item
+    iconRemove.className = 'fas fa-trash p-2';
+    aRemove.appendChild(iconRemove); // appends remove icon to anchor
+    div4Icons.appendChild(aRemove); // appends remove anchor to item
 
     item.appendChild(divNormal);
     item.appendChild(divEdit);
@@ -96,12 +106,17 @@ export default class UI {
     list.appendChild(item); // appends item to list
   }
 
-  static addTaskStore(description) {
+  static addTask(description) {
     // gets index from storage
     const index = Store.getIndexTotal();
     // instantiates a new task
     const task = new Task(description, false, index);
+    // adds task to store
+    this.addTaskStore(task);
+    this.addApp();
+  }
 
+  static addTaskStore(task) {
     // Add task to local storage
     Store.addTask(task);
     Store.setsIndexTotalPlusOne();
@@ -129,11 +144,10 @@ export default class UI {
     editView.className = classesE;
 
     // show appropriate icons in edit view
-    const divIcons = childrenLi[2];
-    const icons = divIcons.children;
-    icons[0].classList.add('d-none');
-    this.changeClassToElement(icons[1], 'd-none', '');
-    this.changeClassToElement(icons[2], 'd-none', '');
+    const aIcons = childrenLi[2].querySelectorAll('a');
+    aIcons[0].classList.add('d-none');
+    this.changeClassToElement(aIcons[1], 'd-none', '');
+    this.changeClassToElement(aIcons[2], 'd-none', '');
 
     // sets focus con the input to edit
     const inputEdit = editView.querySelector('input');
@@ -150,6 +164,7 @@ export default class UI {
   static removeTask(index) {
     removeTask(index);
     this.updateIndexes();
+    this.addApp();
   }
 
   static updateTask(index, newDesc) {
