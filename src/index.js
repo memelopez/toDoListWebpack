@@ -74,8 +74,10 @@ document.querySelector('#task-list').addEventListener('click', (e) => {
 
   // when the the trash icon gets clicked to REMOVE
   if (classesArr.indexOf('acceptIcn') !== -1) {
-    const newDesc = document.querySelector('#inputEdit').value;
-    UI.updateTask(index, newDesc);
+    const newDesc = document.querySelector('#inputEdit').value.trim();
+    if (validateDescription(newDesc)) {
+      UI.updateTask(index, newDesc);
+    }
     UI.addApp();
   }
 });
