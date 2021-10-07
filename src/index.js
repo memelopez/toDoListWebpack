@@ -12,9 +12,7 @@ document.querySelector('#addTaskForm').addEventListener('submit', (e) => {
 
   // Get form values
   const taskDescription = document.querySelector('#taskDesc').value.trim();
-  if (!validateDescription(taskDescription)) {
-    // empty input
-  } else {
+  if (validateDescription(taskDescription)) {
     // Add task
     UI.addTask(taskDescription);
   }
@@ -25,9 +23,7 @@ document.querySelector('#addTaskForm').addEventListener('submit', (e) => {
 document.querySelector('#clickEnterIcon').addEventListener('click', () => {
   // Get form values
   const taskDescription = document.querySelector('#taskDesc').value.trim();
-  if (!validateDescription(taskDescription)) {
-    // empty input
-  } else {
+  if (validateDescription(taskDescription)) {
     // Add task
     UI.addTask(taskDescription);
   }
